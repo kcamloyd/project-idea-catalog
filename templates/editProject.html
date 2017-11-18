@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <link rel=stylesheet href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+
+  <body>
+    <h1>Edit Project</h1>
+
+    <form action="{{url_for('editProject', project_id = project.id)}}" method = "post">
+      <p>Name:</p>
+        <input type="text" size="80" name="name">
+      <p>Description:</p>
+        <input type="textarea" rows="4" cols="80" maxlength="250" name="description">
+      <input type="submit">
+    </form>
+
+    <a href="{{url_for('showProjects')}}">Cancel</a>
+  </body>
+</html>

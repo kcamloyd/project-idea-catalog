@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Delete Supply Item</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <link rel=stylesheet href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+
+  <body>
+    <h1>Delete {{item.name}}?</h1>
+
+    <form action="{{url_for('deleteSupplyItem', project_id=project_id, supply_id=supply_id)}}" method="post">
+      <input type="submit" value="Delete">
+    </form>
+
+    <a href="{{url_for('showSupplies', project_id=project_id)}}">Cancel</a>
+  </body>
+</html>
