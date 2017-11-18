@@ -13,7 +13,7 @@ session = DBSession()
 
 
 # Return JSON for each project
-@app.route('/project/JSON')
+@app.route('/project/JSON/')
 def projectJSON():
     projects = session.query(Project).all()
     return jsonify(projects=[p.serialize for p in projects])
@@ -144,7 +144,9 @@ def deleteSupplyItem(project_id, supply_id):
         session.commit()
         return redirect(url_for('showSupplies', project_id=project_id))
     else:
-        return render_template('deleteSupply.html', project_id=project_id, supply_id=supply_id, item=itemToDelete)
+        return render_template(
+            'deleteSupply.html', project_id=project_id,
+            supply_id=supply_id, item=itemToDelete)
 
 
 if __name__ == '__main__':
