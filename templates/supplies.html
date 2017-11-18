@@ -1,42 +1,32 @@
-<!DOCTYPE HTML>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Project Supplies</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <link rel=stylesheet href="{{ url_for('static', filename='styles.css') }}">
-  </head>
+{% extends "main.html" %}
+{% block content %}
+  <h1>{{ project.name }}</h1>
 
-  <body>
-    <h1>{{ project.name }}</h1>
+  <h4>{{ project.description }}</h4>
 
-    <h4>{{ project.description }}</h4>
+  <a href="{{ url_for('newSupplyItem', project_id=project.id) }}">
+    <h2>Add New Supply Item</h2>
+  </a>
 
-    <a href="{{ url_for('newSupplyItem', project_id=project.id) }}">
-      <h2>Add New Supply Item</h2>
-    </a>
+  {% if supplies != [] %}
+    {% for supply in supplies %}
+      <div>
+        <p>Name: {{supply.name}}</p>
+        <p>Description: {{supply.description}}</p>
+        <p>Price: {{supply.price}}</p>
+        <a href = "{{url_for('editSupplyItem', project_id=project.id, supply_id=supply.id)}}">
+          Edit Item
+        </a>
+        <a href = "{{url_for('deleteSupplyItem', project_id=project.id, supply_id=supply.id)}}">
+          Delete Item
+        </a>
+      </div>
+    {% endfor %}
+  {% else %}
+    <h3>Looks like you haven't added any supplies yet. What do you need to complete this project?</h3>
+  {% endif %}
 
-    {% if supplies != [] %}
-      {% for supply in supplies %}
-        <div>
-          <p>Name: {{supply.name}}</p>
-          <p>Description: {{supply.description}}</p>
-          <p>Price: {{supply.price}}</p>
-          <a href = "{{url_for('editSupplyItem', project_id=project.id, supply_id=supply.id)}}">
-            Edit Item
-          </a>
-          <a href = "{{url_for('deleteSupplyItem', project_id=project.id, supply_id=supply.id)}}">
-            Delete Item
-          </a>
-        </div>
-      {% endfor %}
-    {% else %}
-      <h3>Looks like you haven't added any supplies yet. What do you need to complete this project?</h3>
-    {% endif %}
-
-    <a href="{{ url_for('showProjects') }}">
-      <h3>View All Projects</h3>
-    </a>
-  </body>
-</html>
+  <a href="{{ url_for('showProjects') }}">
+    <h3>View All Projects</h3>
+  </a>
+{% endblock %}

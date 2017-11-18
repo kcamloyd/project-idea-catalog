@@ -1,21 +1,12 @@
-<!DOCTYPE HTML>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>New Project</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <link rel=stylesheet href="{{ url_for('static', filename='styles.css') }}">
-  </head>
+{% extends "main.html" %}
+{% block content %}
+  <h1>New Project</h1>
 
-  <body>
-    <h1>New Project</h1>
-
-    <form action="{{url_for('newProject')}}" method = "post">
-      <p>Name:</p>
-        <input type="text" size="80" name="name">
-      <p>Description:</p>
-        <input type="textarea" rows="4" cols="80" maxlength="250" name="description">
-      <input type="submit" value="Create">
-  </body>
-</html>
+  <form action="{{url_for('newProject')}}" method = "post">
+    <p>Name:</p>
+    <input type="text" size="80" name="name">
+    <p>Description:</p>
+    <input type="textarea" rows="4" cols="80" maxlength="250" name="description">
+    <input type="submit" value="Create">
+  </form>
+{% endblock %}

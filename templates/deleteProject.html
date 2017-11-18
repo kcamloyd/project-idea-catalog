@@ -1,14 +1,5 @@
-<!DOCTYPE HTML>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Delete Project</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <link rel=stylesheet href="{{ url_for('static', filename='styles.css') }}">
-  </head>
-
-  <body>
+{% extends "main.html" %}
+{% block content %}
     <h1>Delete {{project.name}}?</h1>
 
     <form action="{{url_for('deleteProject', project_id = project.id)}}" method="post">
@@ -16,5 +7,4 @@
     </form>
 
     <a href="{{url_for('showProjects')}}">Cancel</a>
-  </body>
-</html>
+{% endblock %}
