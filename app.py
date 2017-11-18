@@ -1,5 +1,5 @@
 #!usr/bin/env python3
-from flask import Flask
+from flask import Flask, render_template, request, url_for, redirect, jsonify
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -150,6 +150,7 @@ def deleteSupplyItem(project_id, supply_id):
 
 
 if __name__ == '__main__':
+    app.secret_key = '\xdaH)\x92\DSxf2\xb1\xe0\x*#b4$\x1aYH\xc?8t\x88\x08\x04'
     # REMOVE APP.DEBUG FOR PRODUCTION
     app.debug = True
     app.run(host='0.0.0.0', port=8000)
