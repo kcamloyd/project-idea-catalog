@@ -9,6 +9,13 @@
   </head>
 
   <body>
+    <header>
+      <a href="{{url_for('showProjects')}}">
+        <i class="glyphicon glyphicon-list-alt"></i> Show all projects
+      </a>
+      <a href="#">Log In</a>
+    </header>
+
     {% block content %}
     {% endblock %}
   </body>
