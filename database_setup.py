@@ -7,7 +7,7 @@ from sqlalchemy import create_engine
 Base = declarative_base()
 
 
-#Create table of users for in-app authorization
+# Create table of users for in-app authorization
 class User(Base):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True)

@@ -92,8 +92,8 @@ def gconnect():
     stored_gplus_id = login_session.get('gplus_id')
     if stored_access_token is not None and gplus_id == stored_gplus_id:
         response = make_response(
-                    json.dumps('Current user is already connected.'),
-                                 200)
+                    json.dumps(
+                        'Current user is already connected.'), 200)
         response.headers['Content-Type'] = 'application/json'
         return response
 
@@ -128,10 +128,12 @@ def gconnect():
     print("done!")
     return output
 
+
 # User Helper Functions
 def createUser(login_session):
-    newUser = User(email=login_session['email'],
-                    picture=login_session['picture'])
+    newUser = User(
+                email=login_session['email'],
+                picture=login_session['picture'])
     session.add(newUser)
     session.commit()
     user = session.query(User).filter_by(email=login_session['email']).one()
@@ -174,8 +176,9 @@ def gdisconnect():
         response.headers['Content-Type'] = 'application/json'
         return response
     else:
-        response = make_response(json.dumps('Failed to revoke token ' +
-                                'for given user.', 400))
+        response = make_response(json.dumps(
+                                    'Failed to revoke token ' +
+                                    'for given user.', 400))
         response.headers['Content-Type'] = 'application/json'
         return response
 
