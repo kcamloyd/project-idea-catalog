@@ -1,12 +1,20 @@
 {% extends "main.html" %}
 {% block content %}
-  <h1>New Project</h1>
+  <div class="row">
+    <h1 class="col-xs-12">New Project</h1>
+  </div>
 
   <form action="{{url_for('newProject')}}" method = "post">
-    <p>Name:</p>
-    <input type="text" size="80" name="name">
-    <p>Description:</p>
-    <input type="textarea" rows="4" cols="80" maxlength="250" name="description">
-    <input type="submit" value="Create">
+    <div class="form-group">
+      <label>Name:</label>
+      <input type="text" class="form-control" name="name">
+    </div>
+
+    <div class="form-group">
+      <label>Description:</label>
+      <input type="text" class="form-control" maxlength="250" name="description">
+    </div>
+
+    <button class="btn btn-success" type="submit">Create</button>
   </form>
 {% endblock %}

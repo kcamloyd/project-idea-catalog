@@ -1,9 +1,11 @@
 {% extends "main.html" %}
 {% block content %}
-  <h1>Delete {{item.name}}?</h1>
+  <div class="row">
+    <h1>Delete {{item.name}}?</h1>
+  </div>
 
   <form action="{{url_for('deleteSupplyItem', project_id=project_id, supply_id=supply_id)}}" method="post">
-    <input type="submit" value="Delete">
+    <button class="btn btn-danger" type="submit">Delete</button>
   </form>
 
   <a href="{{url_for('showSupplies', project_id=project_id)}}">Cancel</a>

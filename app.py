@@ -1,7 +1,13 @@
 #!usr/bin/env python3
-from flask import Flask, render_template, request, url_for, redirect, jsonify
-from sqlalchemy import create_engine
+from flask import Flask, render_template, request, url_for, redirect, jsonify, flash
+from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
+from database_setup import Base, Project, SupplyItem
+from flask import session as login_session
+import random, string
+import json
+from flask import make_response
+import requests
 
 app = Flask(__name__)
 
@@ -36,7 +42,7 @@ def supplyItemJSON(project_id, supply_id):
 
 # Show all projects
 @app.route('/')
-@app.route('/projects/')
+@app.route('/project/')
 def showProjects():
     projects = session.query(Project).all()
     return render_template('projects.html', projects=projects)
@@ -150,7 +156,7 @@ def deleteSupplyItem(project_id, supply_id):
 
 
 if __name__ == '__main__':
-    app.secret_key = '\xdaH)\x92\DSxf2\xb1\xe0\x*#b4$\x1aYH\xc?8t\x88\x08\x04'
+    # app.secret_key = 'sdfoikI8830923SDOIJjsdk4klkj342ij*(DUFJ#)'
     # REMOVE APP.DEBUG FOR PRODUCTION
     app.debug = True
     app.run(host='0.0.0.0', port=8000)

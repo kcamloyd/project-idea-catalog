@@ -11,21 +11,29 @@
   </head>
 
   <body>
-    <header>
-      <a href="{{url_for('showProjects')}}">
-        <i class="glyphicon glyphicon-list-alt"></i> Show all projects
-      </a>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <header class="row">
+          <div class="col-xs-6">
+            <a href="{{url_for('showProjects')}}">
+              <h4><i class="glyphicon glyphicon-list-alt"></i> Show all projects</h4>
+            </a>
+          </div>
 
-      {% if "user is logged in" %}
-        <a href="#">Log Out</a>
-      {% else %}
-        <!-- Google sign in button -->
-      {% endif %}
+          <div class="col-xs-6 text-right">
+            {% if "user is logged in" %}
+              <a href="#"><h4>Log Out</h4></a>
+            {% else %}
+              <!-- Google sign in button -->
+            {% endif %}
+          </div>
+        </header>
+      </nav>
 
-    </header>
-
-    {% block content %}
-    {% endblock %}
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
 
     <!-- Bootstrap JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

@@ -1,34 +1,54 @@
 {% extends "main.html" %}
 {% block content %}
-  <h1>Projects</h1>
+  <div class="page-header">
+    <h1>Projects</h1>
+  </div>
 
-  <a href="{{url_for('newProject')}}"><h2>Create Project</h2></a>
+  <div class="row">
+    <div class="col-xs-2">
+      <a class="btn btn-success" role="button" href="{{url_for('newProject')}}">
+        <i class="glyphicon glyphicon-plus"></i>
+        Create Project
+      </a>
+    </div>
+  </div>
 
   {% if projects != [] %}
+    <ul class="list-group">
     {% for project in projects %}
-      <div>
-        <h3>
-          <a href="{{url_for('showSupplies', project_id=project.id)}}">
-            {{project.name}}
-          </a>
-        </h3>
+      <li class="list-group-item">
+        <div class="row">
+          <h3 class="col-xs-6">
+            <a href="{{url_for('showSupplies', project_id=project.id)}}">
+              {{project.name}}
+            </a>
+          </h3>
+        </div>
 
-        <p>{{project.description}}</p>
+        <div class="row">
+          <p class="col-xs-6">{{project.description}}</p>
+        </div>
 
-        <button>
-          <a href="{{url_for('editProject', project_id=project.id)}}">
-            Edit Project
-          </a>
-        </button>
+        <div class="row">
+          <div class="col-xs-2">
+            <a class="btn btn-info" role="button" href="{{url_for('editProject', project_id=project.id)}}">
+              <i class="glyphicon glyphicon-pencil"></i>
+              Edit Project
+            </a>
+          </div>
 
-        <button>
-          <a href="{{url_for('deleteProject', project_id=project.id)}}">
-            Delete Project
-          </a>
-        </button>
-      </div>
+          <div class="col-xs-2">
+            <a class="btn btn-danger" role="button" href="{{url_for('deleteProject', project_id=project.id)}}">
+              <i class="glyphicon glyphicon-trash"></i>
+              Delete Project
+            </a>
+          </div>
+        </div>
+      </li>
     {% endfor %}
   {% else %}
-    <h3>Looks like you haven't created any projects yet. Let's get started!</h3>
+    <div class="row">
+      <h3 class="col-xs-12">Looks like you haven't created any projects yet. Let's get started!</h3>
+    </div>
   {% endif %}
 {% endblock %}

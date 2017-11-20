@@ -1,10 +1,12 @@
 {% extends "main.html" %}
 {% block content %}
+  <div class="row">
     <h1>Delete {{project.name}}?</h1>
+  </div>
 
-    <form action="{{url_for('deleteProject', project_id = project.id)}}" method="post">
-      <input type="submit" value="Delete">
-    </form>
+  <form action="{{url_for('deleteProject', project_id = project.id)}}" method="post">
+    <button class="btn btn-danger" type="submit">Delete</button>
+  </form>
 
-    <a href="{{url_for('showProjects')}}">Cancel</a>
+  <a href="{{url_for('showProjects')}}">Cancel</a>
 {% endblock %}
