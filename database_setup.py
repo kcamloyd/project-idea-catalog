@@ -1,12 +1,18 @@
 #!usr/bin/env python3
-import os
-import sys
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 
 Base = declarative_base()
+
+
+#Create table of users for in-app authorization
+class User(Base):
+    __tablename__ = 'user'
+    id = Column(Integer, primary_key=True)
+    email = Column(String(250), nullable=False)
+    picture = Column(String(250))
 
 
 # Create table of projects with name and description

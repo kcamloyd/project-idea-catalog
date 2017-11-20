@@ -1,11 +1,13 @@
-.margin {
-  margin: 20px;
-}
-
 .glyphicon {
   padding: 3px;
 }
 
-.btn {
+.btn-success,
+.btn-info,
+.btn-danger {
   margin-bottom: 20px;
+}
+
+.btn-primary {
+  margin-top: 5px;
 }
