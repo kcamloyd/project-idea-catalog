@@ -7,12 +7,12 @@
   <form action="{{url_for('editProject', project_id = project.id)}}" method = "post">
     <div class="form-group">
       <label>New Name:</label>
-      <input type="text" class="form-control" name="name">
+      <input type="text" class="form-control" name="name" value="{{ project.name }}">
     </div>
 
     <div class="form-group">
       <label>New Description:</label>
-      <input type="text" class="form-control" maxlength="250" name="description">
+      <input type="text" class="form-control" maxlength="250" name="description" value="{{ project.description }}">
     </div>
 
     <button class="btn btn-info" type="submit">Submit</button>
