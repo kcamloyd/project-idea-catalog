@@ -21,6 +21,8 @@ class Project(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(100), nullable=False)
     description = Column(String(250))
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship(User)
 
     @property
     def serialize(self):
@@ -41,6 +43,8 @@ class SupplyItem(Base):
     price = Column(String(8))
     project_id = Column(Integer, ForeignKey('project.id'))
     project = relationship(Project)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship(User)
 
     @property
     def serialize(self):

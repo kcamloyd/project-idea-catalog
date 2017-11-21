@@ -1,0 +1,29 @@
+{% extends "main.html" %}
+{% block content %}
+  <div class="page-header">
+    <h1>Projects</h1>
+  </div>
+
+  {% if projects != [] %}
+    <ul class="list-group">
+    {% for project in projects %}
+      <li class="list-group-item">
+        <div class="row">
+          <h3 class="col-xs-6">
+            <a href="{{url_for('showSupplies', project_id=project.id)}}">
+              {{project.name}}
+            </a>
+          </h3>
+        </div>
+
+        <div class="row">
+          <p class="col-xs-6">{{project.description}}</p>
+        </div>
+      </li>
+    {% endfor %}
+  {% else %}
+    <div class="row">
+      <h3 class="col-xs-12">No one has created any projects. Log in to get started.</h3>
+    </div>
+  {% endif %}
+{% endblock %}

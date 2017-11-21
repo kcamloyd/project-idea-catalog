@@ -1,0 +1,30 @@
+{% extends "main.html" %}
+{% block content %}
+  <div class="page-header">
+    <h1>{{ project.name }}</h1>
+
+    <h4>{{ project.description }}</h4>
+  </div>
+
+  {% if supplies != [] %}
+    <ul class="list-group">
+    {% for supply in supplies %}
+    <li class="list-group-item">
+      <div class="row">
+        <h3 class="col-xs-6">{{supply.name}}</h3>
+      </div>
+
+      <div class="row">
+        <p class="col-xs-6">{{supply.description}}</p>
+      </div>
+
+      <div class="row">
+        <p class="col-xs-6">{{supply.price}}</p>
+      </div>
+    {% endfor %}
+  {% else %}
+    <div class="row">
+      <h3 class="col-xs-12">There are no supplies listed for this project.</h3>
+    </div>
+  {% endif %}
+{% endblock %}
