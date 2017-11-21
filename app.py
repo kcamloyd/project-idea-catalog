@@ -212,7 +212,9 @@ def showProjects():
     if 'email' not in login_session:
         return render_template('publicProjects.html', projects=projects)
     else:
-        return render_template('projects.html', projects=projects, creator = login_session['user_id'])
+        return render_template(
+                'projects.html', projects=projects,
+                creator=login_session['user_id'])
 
 
 # Create a new project
@@ -335,8 +337,9 @@ def editSupplyItem(project_id, supply_id):
         session.commit()
         return redirect(url_for('showSupplies', project_id=project_id))
     else:
-        return render_template('editSupply.html', project_id=project_id,
-            supply_id=supply_id, item=editedItem)
+        return render_template(
+                'editSupply.html', project_id=project_id,
+                supply_id=supply_id, item=editedItem)
 
 
 # Delete a supply item
