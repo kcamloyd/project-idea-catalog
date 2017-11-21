@@ -30,7 +30,7 @@
             {%if 'email' not in session %}
 			         <a class="btn btn-primary" role="button" href="{{url_for('showLogin')}}">Login</a>
 			      {% else %}
-			         <a class="btn btn-primary" role="button" href="{{url_for('disconnect')}}">Logout</a>
+			         <a class="btn btn-primary" role="button" href="{{url_for('gdisconnect')}}">Logout</a>
 			      {% endif %}
 	         </div>
         </header>
