@@ -29,21 +29,23 @@
           <p class="col-xs-6">{{project.description}}</p>
         </div>
 
-        <div class="row">
-          <div class="col-xs-2">
-            <a class="btn btn-info" role="button" href="{{url_for('editProject', project_id=project.id)}}">
-              <i class="glyphicon glyphicon-pencil"></i>
-              Edit Project
-            </a>
-          </div>
+        {% if project.user_id == creator %}
+          <div class="row">
+            <div class="col-xs-2">
+              <a class="btn btn-info" role="button" href="{{url_for('editProject', project_id=project.id)}}">
+                <i class="glyphicon glyphicon-pencil"></i>
+                Edit Project
+              </a>
+            </div>
 
-          <div class="col-xs-2">
-            <a class="btn btn-danger" role="button" href="{{url_for('deleteProject', project_id=project.id)}}">
-              <i class="glyphicon glyphicon-trash"></i>
-              Delete Project
-            </a>
+            <div class="col-xs-2">
+              <a class="btn btn-danger" role="button" href="{{url_for('deleteProject', project_id=project.id)}}">
+                <i class="glyphicon glyphicon-trash"></i>
+                Delete Project
+              </a>
+            </div>
           </div>
-        </div>
+        {% endif %}
       </li>
     {% endfor %}
   {% else %}

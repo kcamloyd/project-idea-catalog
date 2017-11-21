@@ -173,7 +173,7 @@ def gdisconnect():
         del login_session['picture']
         response = make_response(json.dumps('Successfully disconnected.'), 200)
         response.headers['Content-Type'] = 'application/json'
-        return response
+        return redirect(url_for('showProjects'))
     else:
         response = make_response(json.dumps(
                                     'Failed to revoke token ' +
@@ -212,7 +212,7 @@ def showProjects():
     if 'email' not in login_session:
         return render_template('publicProjects.html', projects=projects)
     else:
-        return render_template('projects.html', projects=projects)
+        return render_template('projects.html', projects=projects, creator = login_session['user_id'])
 
 
 # Create a new project
@@ -240,6 +240,7 @@ def editProject(project_id):
         return redirect('/login')
     if editedProject.user_id != login_session['user_id']:
         flash('You can only edit a project you created')
+        return redirect(url_for('showProjects', project_id=project_id))
     if request.method == 'POST':
         if request.form['name']:
             editedProject.name = request.form['name']
@@ -260,6 +261,7 @@ def deleteProject(project_id):
         return redirect('/login')
     if projectToDelete.user_id != login_session['user_id']:
         flash('You can only delete a project you created')
+        return redirect(url_for('showProjects', project_id=project_id))
     if request.method == 'POST':
         session.delete(projectToDelete)
         session.commit()
@@ -295,6 +297,7 @@ def newSupplyItem(project_id):
     project = session.query(Project).filter_by(id=project_id).one()
     if project.user_id != login_session['user_id']:
         flash('You cannot add a supply item to a project you did not create')
+        return redirect(url_for('showSupplies', project_id=project_id))
     if request.method == 'POST':
         newItem = SupplyItem(
             name=request.form['name'],
@@ -320,6 +323,7 @@ def editSupplyItem(project_id, supply_id):
     project = session.query(Project).filter_by(id=project_id).one()
     if project.user_id != login_session['user_id']:
         flash('You cannot edit a supply item you did not create')
+        return redirect(url_for('showSupplies', project_id=project_id))
     if request.method == 'POST':
         if request.form['name']:
             editedItem.name = request.form['name']
@@ -331,11 +335,8 @@ def editSupplyItem(project_id, supply_id):
         session.commit()
         return redirect(url_for('showSupplies', project_id=project_id))
     else:
-        return render_template(
-            'editSupply.html',
-            project_id=project_id,
-            supply_id=supply_id,
-            item=editedItem)
+        return render_template('editSupply.html', project_id=project_id,
+            supply_id=supply_id, item=editedItem)
 
 
 # Delete a supply item
@@ -349,6 +350,7 @@ def deleteSupplyItem(project_id, supply_id):
     itemToDelete = session.query(SupplyItem).filter_by(id=supply_id).one()
     if project.user_id != login_session['user_id']:
         flash('You cannot delete a supply item you did not create')
+        return redirect(url_for('showSupplies', project_id=project_id))
     if request.method == 'POST':
         session.delete(itemToDelete)
         session.commit()
