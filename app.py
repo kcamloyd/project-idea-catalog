@@ -208,7 +208,7 @@ def supplyItemJSON(project_id, supply_id):
 @app.route('/')
 @app.route('/project/')
 def showProjects():
-    projects = session.query(Project).order_by(asc(Project.name))
+    projects = session.query(Project).all()
     if 'email' not in login_session:
         return render_template('publicProjects.html', projects=projects)
     else:
