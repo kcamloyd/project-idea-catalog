@@ -1,3 +1,5 @@
+[View screenshots of this project on my portfolio site.](https://katieloyd.com/portfolio/project-idea-catalog/)
+
 Store art/craft project ideas with a list of necessary supplies.
 
 Catalog project for [Udacity Full Stack Web Developer Nanodegree](https://www.udacity.com/course/full-stack-web-developer-nanodegree--nd004).
